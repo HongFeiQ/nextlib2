@@ -255,7 +255,7 @@ function buildFfmpeg() {
 
   # Add enabled decoders to FFmpeg build configuration
   for decoder in $ENABLED_DECODERS; do
-    COMMON_OPTIONS="${COMMON_OPTIONS} --enable-decoder=${decoder}"
+    COMMON_OPTIONS="${COMMON_OPTIONS} --enable-decoder=${decoder} --enable-parser=${decoder}"
   done
 
   # Build FFmpeg for each architecture and platform
@@ -322,19 +322,12 @@ function buildFfmpeg() {
       --disable-postproc \
       --disable-avfilter \
       --disable-symver \
-      --enable-avcodec \
-      --enable-bsfs \
-      --enable-parsers \
-      --enable-demuxers \
       --enable-swresample \
-      --enable-avformat \
+      --disable-avformat \
       --enable-libvpx \
       --enable-libdav1d \
-      --enable-protocol=file,http,https,mmsh,mmst,pipe,rtmp,rtmps,rtmpt,rtmpts,rtp,tls \
-      --enable-version3 \
-      --enable-mbedtls \
       --extra-ldexeflags=-pie \
-      --disable-debug \
+      --disable-v4l2-m2m \
       --build-suffix=-exo \
       ${EXTRA_BUILD_CONFIGURATION_FLAGS} \
       ${COMMON_OPTIONS}
@@ -360,7 +353,7 @@ function buildFfmpeg() {
 if [[ ! -d "$OUTPUT_DIR" && ! -d "$BUILD_DIR" ]]; then
   # Download MbedTLS source code if it doesn't exist
   if [[ ! -d "$MBEDTLS_DIR" ]]; then
-    downloadMbedTLS
+    #downloadMbedTLS
   fi
 
   # Download Vpx source code if it doesn't exist
@@ -379,7 +372,7 @@ if [[ ! -d "$OUTPUT_DIR" && ! -d "$BUILD_DIR" ]]; then
   fi
 
   # Building library
-  buildMbedTLS
+  #buildMbedTLS
   buildLibVpx
   buildDav1d
   buildFfmpeg
