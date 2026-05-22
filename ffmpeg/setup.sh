@@ -351,11 +351,6 @@ function buildFfmpeg() {
 }
 
 if [[ ! -d "$OUTPUT_DIR" && ! -d "$BUILD_DIR" ]]; then
-  # Download MbedTLS source code if it doesn't exist
-  if [[ ! -d "$MBEDTLS_DIR" ]]; then
-    #downloadMbedTLS
-  fi
-
   # Download Vpx source code if it doesn't exist
   if [[ ! -d "$VPX_DIR" ]]; then
     downloadLibVpx
@@ -372,7 +367,6 @@ if [[ ! -d "$OUTPUT_DIR" && ! -d "$BUILD_DIR" ]]; then
   fi
 
   # Building library
-  #buildMbedTLS
   buildLibVpx
   buildDav1d
   buildFfmpeg
