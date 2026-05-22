@@ -36,4 +36,3 @@ jobs:
           name: release-aars
           path: |
               ./media3ext/build/outputs
-              ./mediainfo/build/outputs
